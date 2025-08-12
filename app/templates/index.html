@@ -54,13 +54,21 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12">Popular Destinations</h2>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                {% for city in ['New York', 'Los Angeles', 'Chicago', 'Miami'] %}
+                {% set destinations = [
+                    {'name': 'New York', 'image': 'new_york.jpg'},
+                    {'name': 'California', 'image': 'california.jpg'},
+                    {'name': 'Florida', 'image': 'florida.jpg'},
+                    {'name': 'Texas', 'image': 'texas.jpg'}
+                ] %}
+                {% for destination in destinations %}
                 <div class="card bg-base-100 shadow-lg">
                     <figure class="px-4 pt-4">
-                        <div class="h-48 w-full bg-base-300 rounded-xl"></div>
+                        <img src="{{ url_for('static', filename='images/states/' + destination.image) }}" 
+                             alt="{{ destination.name }}" 
+                             class="h-48 w-full object-cover rounded-xl">
                     </figure>
                     <div class="card-body">
-                        <h3 class="card-title justify-center">{{ city }}</h3>
+                        <h3 class="card-title justify-center">{{ destination.name }}</h3>
                     </div>
                 </div>
                 {% endfor %}
